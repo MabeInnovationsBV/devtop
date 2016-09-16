@@ -6,7 +6,7 @@ Developer virtual desktop docker container, accessible via Windows Remote Deskto
 ## Starting it up
 
 ``
-$ docker run -d -P belooussov/devtop:latest
+$ docker run -d -p 3389:3389 belooussov/devtop:latest
 ``
 
 Docker will download and launch the container automatically.
@@ -18,7 +18,7 @@ On Windows platform, use "remote desktop" utility.
 On Linux/Unix, use either "rdesktop" or "tsclient":
 
 ``
-$ rdesktop -f 172.17.0.2
+$ rdesktop -f 127.0.0.1
 ``
 
 ## Username and password
