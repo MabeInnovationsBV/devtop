@@ -12,10 +12,10 @@ build:
 	docker tag $(FULLDOCKERNAME) $(AUTHOR)/$(NAME):latest
 
 bash:
-	docker run -it -P --entrypoint /bin/bash $(AUTHOR)/$(NAME):latest
+	docker run -it -p 3389:3389 --entrypoint /bin/bash $(AUTHOR)/$(NAME):latest
 
 run:
-	docker run -d -P $(AUTHOR)/$(NAME):latest
+	docker run -d -p 3389:3389 $(AUTHOR)/$(NAME):latest
 
 devtop:
-	rdesktop -u root -p password -f 172.17.0.2
+	rdesktop -u devtop -p password -f 127.0.0.1
