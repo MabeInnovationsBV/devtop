@@ -21,7 +21,7 @@ RUN dnf -y install man-pages && \
     useradd -G wheel devtop
 RUN echo 'devtop:password' | chpasswd
 RUN echo "devtop ALL = (root) NOPASSWD: ALL" > /etc/sudoers.d/devtop
-COPY ./artifacts/startwm.sh /etc/xrdp/startwm.sh
+RUN echo "mate-session" > /etc/xrdp/startwm.sh
 COPY ./artifacts/entrypoint.sh /entrypoint.sh
 VOLUME /home
 EXPOSE 3389
