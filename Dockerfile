@@ -20,9 +20,9 @@ RUN dnf -y install man-pages && \
     mkdir -p /etc/sudoers.d && \
     useradd -G wheel devtop
 RUN echo 'devtop:password' | chpasswd
-COPY ./artifacts/sudofile /etc/sudoers.d/devtop
+RUN echo "devtop ALL = (root) NOPASSWD: ALL" > /etc/sudoers.d/devtop
 COPY ./artifacts/startwm.sh /etc/xrdp/startwm.sh
 COPY ./artifacts/entrypoint.sh /entrypoint.sh
-VOLUME /home/devtop
+VOLUME /home
 EXPOSE 3389
 ENTRYPOINT ["/entrypoint.sh"]
