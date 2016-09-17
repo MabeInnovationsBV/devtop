@@ -22,17 +22,17 @@ RUN dnf -y install man-pages && \
 RUN echo 'devtop:password' | chpasswd
 RUN echo "devtop ALL = (root) NOPASSWD: ALL" > /etc/sudoers.d/devtop
 RUN echo "mate-session" > /etc/xrdp/startwm.sh
-RUN echo "#!/bin/bash" >/entrypoint.sh
-RUN echo "# Copyright Maxim B. Belooussov <belooussov@gmail.com>" >>/entrypoint.sh
-RUN echo "# generate a random machine id upon startup" >>/entrypoint.sh
-RUN echo "openssl rand -out /etc/machine-id -hex 16" >>/entrypoint.sh
-RUN echo "# start dbus" >>/entrypoint.sh
-RUN echo "dbus-daemon" >>/entrypoint.sh
-RUN echo "# start xrdp session manager" >>/entrypoint.sh
-RUN echo "xrdp-sesman" >>/entrypoint.sh
-RUN echo "# and now start xrdp in the foreground" >>/entrypoint.sh
-RUN echo "xrdp --nodaemon" >>/entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN echo "#!/bin/bash" >/entrypoint.sh && \
+    echo "# Copyright Maxim B. Belooussov <belooussov@gmail.com>" >>/entrypoint.sh && \
+    echo "# generate a random machine id upon startup" >>/entrypoint.sh && \
+    echo "openssl rand -out /etc/machine-id -hex 16" >>/entrypoint.sh && \
+    echo "# start dbus" >>/entrypoint.sh && \
+    echo "dbus-daemon" >>/entrypoint.sh && \
+    echo "# start xrdp session manager" >>/entrypoint.sh && \
+    echo "xrdp-sesman" >>/entrypoint.sh && \
+    echo "# and now start xrdp in the foreground" >>/entrypoint.sh && \
+    echo "xrdp --nodaemon" >>/entrypoint.sh && \
+    chmod +x /entrypoint.sh
 VOLUME /home
 EXPOSE 3389
 ENTRYPOINT ["/entrypoint.sh"]
