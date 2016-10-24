@@ -1,6 +1,6 @@
 FROM fedora:latest
 MAINTAINER Maxim B. Belooussov <belooussov@gmail.com>
-RUN dnf -y install man-pages && \
+RUN dnf -y install man && \
     dnf -y groupinstall mate-desktop && \
     dnf -y install \
         dejavu-sans-fonts \
@@ -18,11 +18,10 @@ RUN dnf -y install man-pages && \
     dnf -y update && \
     dnf clean all && \
     mkdir -p /etc/sudoers.d && \
-    useradd -G wheel devtop
-RUN echo 'devtop:password' | chpasswd
-RUN echo "devtop ALL = (root) NOPASSWD: ALL" > /etc/sudoers.d/devtop
-RUN echo "mate-session" > /etc/xrdp/startwm.sh
-RUN echo "#!/bin/bash" >/entrypoint.sh && \
+    useradd -G wheel devtop && \
+    echo "devtop ALL = (root) NOPASSWD: ALL" > /etc/sudoers.d/devtop && \
+    echo "mate-session" > /etc/xrdp/startwm.sh && \
+    echo "#!/bin/bash" >/entrypoint.sh && \
     echo "# Copyright Maxim B. Belooussov <belooussov@gmail.com>" >>/entrypoint.sh && \
     echo "# generate a random machine id upon startup" >>/entrypoint.sh && \
     echo "openssl rand -out /etc/machine-id -hex 16" >>/entrypoint.sh && \
@@ -32,7 +31,8 @@ RUN echo "#!/bin/bash" >/entrypoint.sh && \
     echo "xrdp-sesman" >>/entrypoint.sh && \
     echo "# and now start xrdp in the foreground" >>/entrypoint.sh && \
     echo "xrdp --nodaemon" >>/entrypoint.sh && \
-    chmod +x /entrypoint.sh
+    chmod +x /entrypoint.sh && \
+    echo 'devtop:password' | chpasswd
 VOLUME /home
 EXPOSE 3389
 ENTRYPOINT ["/entrypoint.sh"]
