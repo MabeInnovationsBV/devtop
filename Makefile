@@ -17,5 +17,9 @@ bash:
 run:
 	docker run -d -p 3389:3389 $(AUTHOR)/$(NAME):latest
 
+mac:
+	@# mount user home into devtop container
+	docker run -d -v $(HOME):/home/devtop -p 3389:3389 $(AUTHOR)/$(NAME):latest
+
 devtop:
 	rdesktop -u devtop -p password -f 127.0.0.1
