@@ -1,6 +1,7 @@
 FROM fedora:latest
 MAINTAINER Maxim B. Belooussov <belooussov@gmail.com>
 RUN dnf -y install man && \
+    dnf -y update && \
     dnf -y groupinstall mate-desktop && \
     dnf -y install \
         dejavu-sans-fonts \
@@ -15,7 +16,6 @@ RUN dnf -y install man && \
         xulrunner && \
     dnf -y install \
         xrdp && \
-    dnf -y update && \
     dnf clean all && \
     mkdir -p /etc/sudoers.d && \
     useradd -G wheel devtop && \
@@ -33,6 +33,5 @@ RUN dnf -y install man && \
     echo "xrdp --nodaemon" >>/entrypoint.sh && \
     chmod +x /entrypoint.sh && \
     echo 'devtop:password' | chpasswd
-VOLUME /home
 EXPOSE 3389
 ENTRYPOINT ["/entrypoint.sh"]
