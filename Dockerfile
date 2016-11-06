@@ -6,14 +6,11 @@ RUN dnf -y install man && \
     dnf -y install \
         dejavu-sans-fonts \
         dejavu-serif-fonts \
+        openssh-clients \
         terminus-fonts \
         tigervnc-server \
         tmux \
-        sudo \
-        xdotool \
-        xorg-x11-twm \
-        xterm \
-        xulrunner && \
+        sudo && \
     dnf -y install \
         xrdp && \
     dnf clean all && \
