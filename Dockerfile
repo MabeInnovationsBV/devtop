@@ -20,13 +20,7 @@ RUN dnf -y install man && \
     echo "mate-session" > /etc/xrdp/startwm.sh && \
     echo "#!/bin/bash" >/entrypoint.sh && \
     echo "# Copyright Maxim B. Belooussov <belooussov@gmail.com>" >>/entrypoint.sh && \
-    echo "# generate a random machine id upon startup" >>/entrypoint.sh && \
-    echo "openssl rand -out /etc/machine-id -hex 16" >>/entrypoint.sh && \
-    echo "# start dbus" >>/entrypoint.sh && \
-    echo "dbus-daemon" >>/entrypoint.sh && \
-    echo "# start xrdp session manager" >>/entrypoint.sh && \
     echo "xrdp-sesman" >>/entrypoint.sh && \
-    echo "# and now start xrdp in the foreground" >>/entrypoint.sh && \
     echo "xrdp --nodaemon" >>/entrypoint.sh && \
     chmod +x /entrypoint.sh && \
     echo 'devtop:password' | chpasswd
