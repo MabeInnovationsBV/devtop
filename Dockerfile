@@ -1,9 +1,9 @@
-FROM fedora:25
+FROM centos:7
 MAINTAINER Maxim B. Belooussov <belooussov@gmail.com>
-RUN dnf -y install man && \
-    dnf -y update && \
-    dnf -y groupinstall mate-desktop && \
-    dnf -y install \
+RUN yum -y install epel-release man && \
+    yum -y update && \
+    yum -y groupinstall mate-desktop && \
+    yum -y install \
         dejavu-sans-fonts \
         dejavu-serif-fonts \
         openssh-clients \
@@ -11,9 +11,9 @@ RUN dnf -y install man && \
         tigervnc-server \
         tmux \
         sudo && \
-    dnf -y install \
+    yum -y install \
         xrdp && \
-    dnf clean all && \
+    yum clean all && \
     mkdir -p /etc/sudoers.d && \
     useradd -G wheel devtop && \
     echo "devtop ALL = (root) NOPASSWD: ALL" > /etc/sudoers.d/devtop && \
