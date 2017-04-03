@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM fedora:25
 MAINTAINER Maxim B. Belooussov <belooussov@gmail.com>
 RUN dnf -y install man && \
     dnf -y update && \
