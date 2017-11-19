@@ -1,6 +1,6 @@
 .PHONY: all build bash run
 NAME=devtop
-AUTHOR=belooussov
+AUTHOR=mabeinnovations
 VERSION=$(shell date +'%Y%m%d.0')
 FULLDOCKERNAME=$(AUTHOR)/$(NAME):$(VERSION)
 

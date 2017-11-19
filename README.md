@@ -10,7 +10,7 @@ Devtop uses port 3389 for rdp connection.
 ## Starting it up
 
 ``
-$ docker run -d -p 3389:3389 belooussov/devtop:latest
+$ docker run -d -p 3389:3389 mabeinnovations/devtop:latest
 ``
 
 Docker will download and launch the container automatically.

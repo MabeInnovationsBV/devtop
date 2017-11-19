@@ -1,5 +1,5 @@
 FROM fedora:25
-MAINTAINER Maxim B. Belooussov <belooussov@gmail.com>
+LABEL maintainer Mabe Innovations B.V. <support@mabeinnovations.nl>
 RUN dnf -y install man && \
     dnf -y update && \
     dnf -y groupinstall mate-desktop && \
